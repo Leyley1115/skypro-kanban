@@ -1,4 +1,4 @@
-import {Card_1_1, Card_1_2, Card_1_3, Card_1_4, Card_1_5, Card_2_1, Card_3_1, Card_3_2, Card_3_3, Card_4_1, Card_5_1} from "../Card/Cards.jsx";
+import {Card} from "../Card/Cards.jsx";
 
 function Columns(){
     return(
@@ -8,11 +8,11 @@ function Columns(){
 				<p>Без статуса</p>
 			</div>
 			<div className="cards">
-				<Card_1_1 />
-				<Card_1_2 />
-				<Card_1_3 />
-				<Card_1_4 />
-				<Card_1_5 />
+				<Card />
+				<Card />
+				<Card />
+				<Card />
+				<Card />
 			</div>
 		</div>						
 		<div className="main__column">
@@ -20,7 +20,7 @@ function Columns(){
 				<p>Нужно сделать</p>
 			</div>
 			<div className="cards">
-				<Card_2_1 />
+				<Card />
 			</div>
 		</div>
 		<div className="main__column">
@@ -28,9 +28,9 @@ function Columns(){
 				<p>В работе</p>
 			</div>
 			<div className="cards">
-				<Card_3_1 />
-				<Card_3_2 />
-				<Card_3_3 />
+				<Card />
+				<Card />
+				<Card />
 			</div>
 		</div>
 		<div className="main__column">
@@ -38,7 +38,7 @@ function Columns(){
 				<p>Тестирование</p>
 			</div>
 			<div className="cards">
-				<Card_4_1 />
+				<Card />
 			</div>
 		</div>
 		<div className="main__column">
@@ -46,7 +46,7 @@ function Columns(){
 				<p>Готово</p>
 			</div>
 			<div className="cards">
-				<Card_5_1 />			
+				<Card />			
 			</div>
 		</div>
         </>
