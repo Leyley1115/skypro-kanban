@@ -1,4 +1,4 @@
-import {Card_1_1, Card_1_2, Card_1_3, Card_1_4, Card_1_5, Card_2_1, Card_3_1, Card_3_2, Card_3_3, Card_4_1, Card_5_1} from "./Cards";
+import {Card_1_1, Card_1_2, Card_1_3, Card_1_4, Card_1_5, Card_2_1, Card_3_1, Card_3_2, Card_3_3, Card_4_1, Card_5_1} from "../Card/Cards.jsx";
 
 function Columns(){
     return(

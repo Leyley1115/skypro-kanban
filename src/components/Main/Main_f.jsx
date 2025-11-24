@@ -1,4 +1,4 @@
-import Columns from "./Columns";
+import Columns from "../Column/Columns.jsx";
 
 function Main(){
     return (
