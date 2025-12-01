@@ -86,7 +86,7 @@ body {
   color: #FFFFFF;
 }
 
-.pop-user-set:target,
+.pop-user-set,
 .pop-exit:target,
 .pop-new-card:target,
 .pop-browse:target {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 import Main from './components/Main/Main_f.jsx'
@@ -9,16 +9,22 @@ import { PopUser } from './components/PopUser/PopUser.jsx'
 
 function App() {
 	useState(0)
+	const [loading, setLoading] = useState(1);
+
+	useEffect(() =>{
+		setTimeout(() =>{
+			setLoading(0);
+		}, 3000);
+
+	}, [])
 	return (
     <>
       <div className="wrapper">
-		{/* <!-- pop-up start--> */}
 		<PopUser />
 		<PopNewCard />
 		<PopBrowse />
-		{/* <!-- pop-up end--> */}
 		<Header />
-		<Main />
+		<Main loading={loading}/>
 		
     </div>
 

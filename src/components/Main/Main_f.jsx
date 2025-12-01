@@ -1,13 +1,13 @@
 import Columns from "../Column/Columns.jsx";
 
-function Main(){
+function Main({loading}){
     return (
         <main className="main">
 			<div className="container">
 				
 				<div className="main__block">
 					<div className="main__content">
-						<Columns />
+						<Columns loading={loading}/>
 					</div>
 				
 				</div>
