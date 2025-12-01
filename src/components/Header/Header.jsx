@@ -20,7 +20,7 @@ function Header(){
 					<nav className="header__nav">
 						<button className="header__btn-main-new _hover01" id="btnMainNew"><a href="#popNewCard">Создать новую задачу</a></button>
 						<a href="#" className="header__user _hover02" onClick = {openState}>Ivan Ivanov</a>
-						<div className="header__pop-user-set"
+						<div className="header__pop-user-set pop-user-set"
 						style = {{display: state ? 'none' : 'block'}}
 						>
 							{/* <!-- <a href="">x</a> --> */}
@@ -30,7 +30,7 @@ function Header(){
 								<p>Темная тема</p>
 								<input type="checkbox" className="checkbox" name="checkbox"></input>
 							</div>
-							<button type="button" className="_hover03"><a href="#popExit">Выйти</a></button>
+							<button type="button" className="_hover03"><a href="#">Выйти</a></button>
 						</div>
 					</nav>					
 				</div>
