@@ -95,7 +95,6 @@ body {
 	}
 }
 // ========== activ ========
-.pop-user-set:target,
 .pop-exit:target,
 .pop-new-card:target,
 .pop-browse:target {
@@ -1044,7 +1043,7 @@ body {
 
 @media screen and (max-width: 1200px) {
 	.main {
-
+		
 		&__block {
 			width: 100%;
 			margin: 0 auto;
