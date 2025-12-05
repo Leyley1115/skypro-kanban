@@ -1,32 +1,35 @@
+import { 
+  SCard,
+  SCardTheme, 
+  CardBtn, 
+  CardContent, 
+  CardTitle, 
+  CardDate,
+  CardGroup
+} from "./Card.style";
 export function Card({topic, title, date}) {
-  const color =
-    topic === "Research"
-      ? "_green"
-      : topic === "Copywriting"
-      ? "_purple"
-      : "_orange";
-      
+   
   return (
     <>
       <div className="cards__item">
-        <div className="cards__card card">
-          <div className="card__group">
-            <div className={`card__theme ${color}`}>
-              <p className={color}>{topic}</p>
-            </div>
+        <SCard>
+          <CardGroup>
+            <SCardTheme $topic = {topic}>
+              <p>{topic}</p>
+            </SCardTheme>
             <a href="#popBrowse" target="_self">
-              <div className="card__btn">
+              <CardBtn>
                 <div></div>
                 <div></div>
                 <div></div>
-              </div>
+              </CardBtn>
             </a>
-          </div>
-          <div className="card__content">
+          </CardGroup>
+          <CardContent>
             <a href="" target="_blank">
-              <h3 className="card__title">{title}</h3>
+              <CardTitle>{title}</CardTitle>
             </a>
-            <div className="card__date">
+            <CardDate>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="13"
@@ -56,9 +59,9 @@ export function Card({topic, title, date}) {
                 </defs>
               </svg>
               <p>{date}</p>
-            </div>
-          </div>
-        </div>
+            </CardDate>
+          </CardContent>
+        </SCard>
       </div>
     </>
   );
