@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import { ButtonHeaderNew, Checkbox, HeaderBlock, HeaderLogo, HeaderLogoDark, HeaderNav, HeaderPopUserSet, Hover2, Hover3, SetMail, SetName, SetTheme, SHeader } from './Header.style';
+import { Container } from '../Main/Main.style';
 
 function Header(){
 	const [state, setState] = useState('false');
@@ -8,34 +10,32 @@ function Header(){
 	}
 	
     return (
-        <header className="header">
-			<div className="container">
-				<div className="header__block">
-					<div className="header__logo _show _light">
+        <SHeader>
+			<Container>
+				<HeaderBlock>
+					<HeaderLogo>
 						<a href="" target="_self"><img src="images/logo.png" alt="logo"></img></a>
-					</div>
-					<div className="header__logo _dark">
+					</HeaderLogo>
+					<HeaderLogoDark>
 						<a href="" target="_self"><img src="images/logo_dark.png" alt="logo"></img></a>
-					</div>
-					<nav className="header__nav">
-						<button className="header__btn-main-new _hover01" id="btnMainNew"><a href="#popNewCard">Создать новую задачу</a></button>
-						<a href="#" className="header__user _hover02" onClick = {openState}>Ivan Ivanov</a>
-						<div className="header__pop-user-set pop-user-set"
-						style = {{display: state ? 'none' : 'block'}}
-						>
+					</HeaderLogoDark>
+					<HeaderNav>
+						<ButtonHeaderNew><a href="#popNewCard">Создать новую задачу</a></ButtonHeaderNew>
+						<Hover2 href="#" onClick = {openState}>Ivan Ivanov</Hover2>
+						<HeaderPopUserSet $state = {state}>
 							{/* <!-- <a href="">x</a> --> */}
-							<p className="pop-user-set__name">Ivan Ivanov</p>
-							<p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-							<div className="pop-user-set__theme">
+							<SetName>Ivan Ivanov</SetName>
+							<SetMail>ivan.ivanov@gmail.com</SetMail>
+							<SetTheme>
 								<p>Темная тема</p>
-								<input type="checkbox" className="checkbox" name="checkbox"></input>
-							</div>
-							<button type="button" className="_hover03"><a href="#">Выйти</a></button>
-						</div>
-					</nav>					
-				</div>
-			</div>			
-		</header>
+								<Checkbox type="checkbox" name="checkbox"></Checkbox>
+							</SetTheme>
+							<Hover3><a href="#">Выйти</a></Hover3>
+						</HeaderPopUserSet>
+					</HeaderNav>					
+				</HeaderBlock>
+			</Container>			
+		</SHeader>
     )
 }
 
