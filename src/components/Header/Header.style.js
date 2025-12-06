@@ -126,12 +126,23 @@ export const SetTheme = styled.div`
 `;
 
 export const Hover3 = styled.button`
+
+	width: 72px;
+	height: 30px;
+	background: transparent;
+	color: #565EEF;
+	border-radius: 4px;
+	border: 1px solid #565EEF;
+
+	& a {
+		color: #565EEF;
+	}
     &:hover{background-color: #33399b;
         color: #FFFFFF;
-        & a {
-            color: #FFFFFF;
-        }
+     & a {
+        color: #FFFFFF;
     }
+}
 `;
 
 export const Hover2 = styled.a`
