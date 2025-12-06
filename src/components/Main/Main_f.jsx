@@ -1,18 +1,17 @@
 import Columns from "../Column/Columns.jsx";
+import { Container, MainBlock, MainContent, MainM } from "./Main.style.js";
 
 function Main({loading}){
     return (
-        <main className="main">
-			<div className="container">
-				
-				<div className="main__block">
-					<div className="main__content">
+        <MainM>
+			<Container>
+				<MainBlock>
+					<MainContent>
 						<Columns loading={loading}/>
-					</div>
-				
-				</div>
-			</div>
-		</main>
+					</MainContent>
+				</MainBlock>
+			</Container>
+		</MainM>
     )
 };
 
