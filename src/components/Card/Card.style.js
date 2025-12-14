@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const colors = {
     orange: ['#FFE4C2', '#FF6D00'],
@@ -52,7 +53,7 @@ export const CardGroup = styled.div`
   justify-content: space-between;
 `;
 
-export const CardBtn = styled.div`
+export const CardBtn = styled(Link)`
   width: 24px;
   height: 24px;
   display: flex;
@@ -76,7 +77,7 @@ export const CardContent = styled.div`
   justify-content: space-between;
 `;
 
-export const CardTitle = styled.h3`
+export const CardTitle = styled(Link)`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;

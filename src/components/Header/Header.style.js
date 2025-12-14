@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SHeader = styled.header`
     width: 100%;
@@ -53,7 +54,7 @@ export const ButtonHeaderNew = styled.button`
 `;
 
 export const HeaderPopUserSet = styled.div`
-    display: ${({$state}) => ($state ? 'none' : 'block')};
+    display: ${({$state}) => ($state ? 'block' : 'none')};
 	position: absolute;
 	top: 61px;
 	right: 0;
@@ -125,7 +126,7 @@ export const SetTheme = styled.div`
 	}
 `;
 
-export const Hover3 = styled.button`
+export const Hover3 = styled(Link)`
 
 	width: 72px;
 	height: 30px;
@@ -133,19 +134,14 @@ export const Hover3 = styled.button`
 	color: #565EEF;
 	border-radius: 4px;
 	border: 1px solid #565EEF;
-
-	& a {
-		color: #565EEF;
-	}
+	color: #565EEF;
+	
     &:hover{background-color: #33399b;
         color: #FFFFFF;
-     & a {
-        color: #FFFFFF;
-    }
 }
 `;
 
-export const Hover2 = styled.a`
+export const Hover2 = styled(Link)`
     color: #33399b;
 
 	&::after {

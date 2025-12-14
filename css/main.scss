@@ -973,18 +973,18 @@ body {
 		justify-content: space-between;
 	}
 
-	// &__theme {
-	// 	width: auto;
-	// 	height: 20px;
-	// 	padding: 5px 14px;
-	// 	border-radius: 18px;
+	&__theme {
+		width: auto;
+		height: 20px;
+		padding: 5px 14px;
+		border-radius: 18px;
 
-	// 	& p {
-	// 		font-size: 10px;
-	// 		font-weight: 600;
-	// 		line-height: 10px;
-	// 	}
-	// }
+		& p {
+			font-size: 10px;
+			font-weight: 600;
+			line-height: 10px;
+		}
+	}
 
 	&__btn {
 		width: 24px;

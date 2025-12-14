@@ -7,7 +7,7 @@ import {
   CardDate,
   CardGroup
 } from "./Card.style";
-export function Card({topic, title, date}) {
+export function Card({topic, title, date, id}) {
    
   return (
     <>
@@ -17,18 +17,16 @@ export function Card({topic, title, date}) {
             <SCardTheme $topic = {topic}>
               <p>{topic}</p>
             </SCardTheme>
-            <a href="#popBrowse" target="_self">
-              <CardBtn>
+            {/* <a href="#popBrowse" target="_self"> */}
+              <CardBtn to={`/card/${id}`}>
                 <div></div>
                 <div></div>
                 <div></div>
               </CardBtn>
-            </a>
+            {/* </a> */}
           </CardGroup>
           <CardContent>
-            <a href="" target="_blank">
-              <CardTitle>{title}</CardTitle>
-            </a>
+              <CardTitle to={`/card/${id}`}><h3>{title}</h3></CardTitle>
             <CardDate>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
