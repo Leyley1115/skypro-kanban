@@ -14,7 +14,7 @@ export const PopExit = styled.div`
 `;
 
 export const PopExitContainer = styled.div`
-    width: 100%;
+  width: 100%;
 	height: 100%;
 	min-height: 100vh;
 	padding: 0 16px;
@@ -26,20 +26,20 @@ export const PopExitContainer = styled.div`
 `;
 
 export const PopExitBlock = styled.div`
-    display: block;
+  display: block;
 	margin: 0 auto;
 	background-color: #FFFFFF;
-	max-width: 370px;
+	max-width: 360px;
 	width: 100%;
-	padding: 50px 60px;
+	padding: 50px 30px;
 	border-radius: 10px;
 	border: 0.7px solid #D4DBE5;
 	box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 `;
 
 export const PopExitTitle = styled.div`
-   text-align: center;
-	font-size: 20px;
+  text-align: center;
+	font-size: 16px;
 	font-weight: 700;
 	line-height: 30px;
 	letter-spacing: -0.4px;
@@ -58,7 +58,7 @@ export const PopExitFormGroup = styled.div`
 `;
 
 export const PopExitButtonYes = styled(Link)`
-    width: 153px;
+  width: 153px;
   height: 30px;
   background-color: #565EEF;
   border-radius: 4px;
@@ -76,9 +76,9 @@ export const PopExitButtonYes = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: #33399b;
+    color: #565EEF;
     background-color: #ffffffff;
-    border: 1px solid #33399b;
+    border: 1px solid #565EEF;
   }
 `;
 
@@ -100,7 +100,7 @@ export const PopExitButtonNo = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    background-color: #33399b; /* hover3 */
+    background-color: #565EEF; /* hover3 */
     color: #FFFFFF;
 
     a {

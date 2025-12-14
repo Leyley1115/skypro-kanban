@@ -127,7 +127,9 @@ export const SetTheme = styled.div`
 `;
 
 export const Hover3 = styled(Link)`
-
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	width: 72px;
 	height: 30px;
 	background: transparent;
@@ -136,7 +138,7 @@ export const Hover3 = styled(Link)`
 	border: 1px solid #565EEF;
 	color: #565EEF;
 	
-    &:hover{background-color: #33399b;
+    &:hover{background-color: #565EEF;
         color: #FFFFFF;
 }
 `;
