@@ -2,7 +2,7 @@ import { Card } from "../Card/Card";
 import { cardList } from "../data";
 import { Loader } from "../Loader/Loader";
 import { CardLoader } from "../CardLoader/CardLoader";
-import { MainColumn, ColumnTitle, Cards, Main } from "./Columns.style";
+import { MainColumn, ColumnTitle, Cards, Main } from "./Columns.styled.js";
 
 function Columns({loading}) {
   const statusList = cardList.filter((item, index, array) => {

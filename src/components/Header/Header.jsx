@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import { ButtonHeaderNew, Checkbox, HeaderBlock, HeaderLogo, HeaderLogoDark, HeaderNav, HeaderPopUserSet, Hover2, Hover3, SetMail, SetName, SetTheme, SHeader } from './Header.style';
-import { Container } from '../Main/Main.style';
+import { ButtonHeaderNew, Checkbox, HeaderBlock, HeaderLogo, HeaderLogoDark, HeaderNav, HeaderPopUserSet, Hover2, Hover3, SetMail, SetName, SetTheme, SHeader } from './Header.styled.js';
+import { Container } from '../Main/Main.styled.js';
 
 
 function Header(){

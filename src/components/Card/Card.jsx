@@ -6,7 +6,7 @@ import {
   CardTitle, 
   CardDate,
   CardGroup
-} from "./Card.style";
+} from "./Card.styled.js";
 export function Card({topic, title, date, id}) {
    
   return (

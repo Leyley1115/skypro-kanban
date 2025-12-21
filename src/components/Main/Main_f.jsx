@@ -1,5 +1,5 @@
 import Columns from "../Column/Columns.jsx";
-import { Container, MainBlock, MainContent, MainM } from "./Main.style.js";
+import { Container, MainBlock, MainContent, MainM } from "./Main.styled.js";
 
 function Main({loading}){
     return (
