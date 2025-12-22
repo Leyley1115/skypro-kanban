@@ -1,13 +1,15 @@
 import { Card } from "../Card/Card";
-import { cardList } from "../data";
+// import { cardList } from "../data";
 import { Loader } from "../Loader/Loader";
 import { CardLoader } from "../CardLoader/CardLoader";
 import { MainColumn, ColumnTitle, Cards, Main } from "./Columns.styled.js";
 
-function Columns({loading}) {
-  const statusList = cardList.filter((item, index, array) => {
-    return index === array.findIndex(obj => obj.status === item.status);
-  }).map(item => item.status);
+function Columns({loading, cardList}) {
+  // const statusList = cardList.filter((item, index, array) => {
+  //   return index === array.findIndex(obj => obj.status === item.status);
+  // }).map(item => item.status);
+  // console.log(statusList);
+  const statusList=['Без статуса', 'Нужно сделать', 'В работе', 'Тестирование', 'Готово']
 
   return (
     <Main style = {{display: "flex"}}>

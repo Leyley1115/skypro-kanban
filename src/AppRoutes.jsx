@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { MainPage } from './pages/MainPage';
 import NotFoundPage from './pages/NotFound';
@@ -11,19 +11,12 @@ import { CardPage } from './pages/CardPage';
 
 
 export function AppRoutes(){
-	const [loading, setLoading] = useState(true);
 	const [isAuth, setIsAuth] = useState(false);
 
-	useEffect(() =>{
-		setTimeout(() =>{
-			setLoading(false);
-		}, 3000);
-
-	}, [])
 	return (
         <Routes>
 			<Route element={<PrivateRoute isAuth={isAuth} />}>
-				<Route path="/" element={<MainPage loading={loading} setIsAuth={setIsAuth}/> }>
+				<Route path="/" element={<MainPage setIsAuth={setIsAuth}/> }>
 					<Route path="exit" element={<ExitPage setIsAuth = {setIsAuth}/>} />
 					<Route path="card/:id" element={<CardPage />} />
 				</Route>
