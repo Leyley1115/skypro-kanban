@@ -22,7 +22,7 @@ export function AppRoutes(){
 				</Route>
 			</Route>
 			<Route path="/login" element={<SignInPage setIsAuth = {setIsAuth}/>} />
-			<Route path="/register" element={<SignUpPage />} />
+			<Route path="/register" element={<SignUpPage setIsAuth = {setIsAuth}/>} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
   )
