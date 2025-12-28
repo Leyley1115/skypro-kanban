@@ -26,14 +26,14 @@ function Columns({loading, cardList}) {
               .filter(card => card.status === status)
               .map(card => 
                 loading ?
-                <CardLoader key = {card.id} />
+                <CardLoader key = {card._id} />
                 :
                 <Card
-                  key={card.id}
+                  key={card._id}
                   topic={card.topic}
                   title={card.title}
                   date={card.date}
-                  id={card.id}
+                  id={card._id}
                 />
               )}
           </Cards>
