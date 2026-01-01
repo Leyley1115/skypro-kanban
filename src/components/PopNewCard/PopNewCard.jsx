@@ -1,16 +1,25 @@
 import Calendar from "../Calendar/Calendar.jsx";
+import { 
+  PopNewCardStyle,
+  PopNewCardContainer,
+  PopNewCardBlock,
+  PopNewCardContent,
+  PopNewCardTitle,
+  PopNewCardClose,
+  PopNewCardWrap,
 
+ } from "../PopBrowse/PopBrowse.styled.js";
 export function PopNewCard() {
   return (
-    <div className="pop-new-card" id="popNewCard">
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
+    <PopNewCardStyle id="popNewCard">
+      <PopNewCardContainer>
+        <PopNewCardBlock>
+          <PopNewCardContent>
+            <PopNewCardTitle>Создание задачи</PopNewCardTitle>
+            <PopNewCardClose>
               &#10006;
-            </a>
-            <div className="pop-new-card__wrap">
+            </PopNewCardClose>
+            <PopNewCardWrap>
               <form
                 className="pop-new-card__form form-new"
                 id="formNewCard"
@@ -42,7 +51,7 @@ export function PopNewCard() {
                 </div>
               </form>
               <Calendar />
-            </div>
+            </PopNewCardWrap>
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__themes">
@@ -60,9 +69,9 @@ export function PopNewCard() {
             <button className="form-new__create _hover01" id="btnCreate">
               Создать задачу
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </PopNewCardContent>
+        </PopNewCardBlock>
+      </PopNewCardContainer>
+    </ PopNewCardStyle>
   );
 }
