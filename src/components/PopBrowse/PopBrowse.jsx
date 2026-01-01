@@ -34,6 +34,7 @@ export function PopBrowse({isEditing, id}) {
   const { cards } = useContext(CardsContext);
   const card = cards.find(c => c._id === id);
   if (!card) return null;
+  const { deleteCard } = useContext(CardsContext);
   const { updateCard } = useContext(CardsContext); 
   const [isEditingNow, setIsEditingNow] = useState(isEditing);
   const [editedStatus, setEditedStatus] = useState(card.status); 
@@ -111,20 +112,13 @@ export function PopBrowse({isEditing, id}) {
               </PopNewCardForm>
               <Calendar />
             </PopNewCardWrap>
-            {/* для создания задач */}
-            {/* <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div> */}
             {isEditingNow ?
             <PopBrowseBtnBrowse>
               <BtnGroup>
                 <button className="btn-browse__edit _btn-bor _hover03">
                   <p onClick={() => setIsEditingNow(!isEditingNow)}>Редактировать задачу</p>
                 </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
+                <button className="btn-browse__delete _btn-bor _hover03" onClick={() => { deleteCard(id);}}>
                   <a href="#">Удалить задачу</a>
                 </button>
               </BtnGroup>
@@ -139,12 +133,15 @@ export function PopBrowse({isEditing, id}) {
                 >
                   Сохранить
                 </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
+                <button className="btn-edit__edit _btn-bor _hover03" 
+                 onClick={() => setIsEditingNow(!isEditingNow)}
+                >
+                  Отменить
                 </button>
                 <button
                   className="btn-edit__delete _btn-bor _hover03"
                   id="btnDelete"
+                  onClick={() => { deleteCard(id);}}
                 >
                   <a href="#">Удалить задачу</a>
                 </button>

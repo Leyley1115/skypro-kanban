@@ -2,8 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { fetchCards } from "../services/api";
 import { AuthContext } from "./AuthContext";
 import { CardsContext } from "./TaskContext";
-import { editCard } from "../services/api";
-import { postCard } from "../services/api";
+import { editCard, deleteCardApi } from "../services/api";
+// import { postCard } from "../services/api";
 
 
 export const CardsProvider = ({ children }) => {
@@ -28,15 +28,18 @@ export const CardsProvider = ({ children }) => {
       loadCards();
    }, [user.token]);
 
-   const addNewCard = async ({ cards }) => {
-      try {
-         const newCards = await postCard({ token: user?.token, card });
-         setCards(newCards);
-      } catch (error) {
-         console.error("Ошибка добавления карточки", error);
-      }
-   };
+   const deleteCard = async (id) => {
+   try {
+      const newCards = await deleteCardApi({
+         token: user?.token,
+         id,
+      });
 
+      setCards(newCards);
+   } catch (error) {
+      console.error("Ошибка удаления карточки", error);
+   }
+   };
 
    const updateCard = async ({ card, id }) => {
       try {
@@ -48,8 +51,18 @@ export const CardsProvider = ({ children }) => {
    };
 
    return (
-      <CardsContext.Provider value={{ cards, setCards, updateCard, loading, error }}>
+      <CardsContext.Provider value={{ cards, setCards, updateCard, deleteCard, loading, error }}>
          {children}
       </CardsContext.Provider>
    );
-};
+};   
+
+
+// const addNewCard = async ({ cards }) => {
+//       try {
+//          const newCards = await postCard({ token: user?.token, card });
+//          setCards(newCards);
+//       } catch (error) {
+//          console.error("Ошибка добавления карточки", error);
+//       }
+//    };
