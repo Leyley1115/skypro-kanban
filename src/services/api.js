@@ -42,3 +42,17 @@ export async function postCard({ token, card }) {
       throw new Error(error.message)
    }
 }
+
+export async function deleteCardApi({ token, id }) {
+  try {
+    const response = await axios.delete(`${API_URL}/${id}`, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    return response.data.tasks;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

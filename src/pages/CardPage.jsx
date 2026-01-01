@@ -1,16 +1,10 @@
 import { useContext, useMemo, useState, useEffect } from "react";
-// import { cardList } from "../components/data";
 import { useParams } from "react-router-dom";
 import { editCard } from "../services/api";
 import { PopBrowse } from "../components/PopBrowse/PopBrowse";
-
-// import { PopExitContainer } from "../components/PopUser/PopUser.styled";
-// import { PopExitBlock } from "../components/PopUser/PopUser.styled";
-// import { PopExit } from "../components/PopUser/PopUser.styled";
-// import { PopExitButtonNo } from "../components/PopUser/PopUser.styled";
 import { CardsContext } from "../context/TaskContext";
 import { AuthContext } from "../context/AuthContext";
-// import { PopNewCard } from "../components/PopNewCard/PopNewCard";
+
 
 export const CardPage = () => {
   const { id } = useParams();
@@ -87,16 +81,16 @@ export const CardPage = () => {
 
  return (
  <>
-        {!isEditing && (
-          <PopBrowse
-            editableCard={editableCard}
-            handleInputChange={handleInputChange}
-            saveChanges={saveChanges}
-            cancel={() => setIsEditing(false)}
-            isEditing={!isEditing}
-            id = {id}
-          />
-        )}
+    {!isEditing && (
+      <PopBrowse
+        editableCard={editableCard}
+        handleInputChange={handleInputChange}
+        saveChanges={saveChanges}
+        cancel={() => setIsEditing(false)}
+        isEditing={!isEditing}
+        id = {id}
+      />
+    )}
   </>
   );
 };
