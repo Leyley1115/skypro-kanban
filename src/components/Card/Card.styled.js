@@ -8,11 +8,11 @@ const colors = {
 }
 
 export const SCardTheme = styled.div`
-    width: auto;
+  width: auto;
 	height: 20px;
 	padding: 5px 14px;
 	border-radius: 18px;
-    font-size: 10px;
+  font-size: 10px;
 	font-weight: 600;
 	line-height: 10px;
     background-color: 
