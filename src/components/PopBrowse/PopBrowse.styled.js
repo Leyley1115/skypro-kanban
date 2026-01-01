@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
-export const PopNewCard = styled.div`
-  display: none;
+const colors = {
+    orange: ['#FFE4C2', '#FF6D00'],
+    green: ['#B4FDD1', '#06B16E'],
+    purple: ['#E9D4FF', '#9A48F1'],
+}
+
+export const PopNewCardStyle = styled.div`
+  display: ${({ $isEditing }) => ($isEditing ? 'block' : 'none')};
   width: 100%;
   min-width: 375px;
   height: 100%;
@@ -36,18 +42,50 @@ export const PopNewCardBlock = styled.div`
   position: relative;
 `;
 
+export const PopNewCardTopBlock = styled.div`
+  display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 18px;	
+`;
+
 export const PopNewCardContent = styled.div`
   display: block;
   text-align: left;
 `;
 
-export const PopNewCardTitle = styled.h2`
+export const PopNewCardTitle = styled.h3`
   color: #000;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
   margin-bottom: 20px;
 `;
+
+export const CategoryTheme = styled.div`
+  display: block; /* theme-top */
+  background-color: 
+    ${({ $topic }) => (
+      $topic === "Web Design" 
+      ? colors.orange[0] 
+      : $topic === "Research" 
+      ? colors.green[0] 
+      : colors.purple[0]
+      )};
+  padding: 8px 12px;
+  border-radius: 6px;
+`;
+
+export const Color = styled.p`
+    color: ${({$topic}) => (
+        $topic === "Web Design" 
+        ? colors.orange[1] 
+        : $topic === "Research" 
+        ? colors.green[1] 
+        : colors.purple[1]
+    )}
+`;
+
 
 export const PopNewCardClose = styled.div`
   position: absolute;
@@ -80,7 +118,7 @@ export const FormNewBlock = styled.div`
   flex-direction: column;
 `;
 
-export const FormNewInput = styled.input`
+export const FormNewInput = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
@@ -144,3 +182,49 @@ export const Subttl = styled.p`
   font-weight: 600;
   line-height: 1;
 `;
+export const StatusThemes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`
+export const StatusTheme = styled.div`
+  border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  color: ${({ $active }) => ($active ? '#FFFFFF' : '#94A6BE')};
+  background: ${({ $active }) => ($active ? '#94A6BE' : '#FFFFFF')};
+  padding: 11px 14px 10px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+
+  p {
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.14px;
+  }
+`;
+
+
+
+export const Status = styled.div`
+  margin-bottom: 11px;
+`
+
+export const PopBrowseBtnBrowse = styled.div`
+  display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+
+  & button {
+			height: 30px;			
+			margin-bottom: 10px;
+			padding: 0 14px;
+		}
+`
+
+export const BtnGroup = styled.div`
+  & button {
+			margin-right: 8px;
+		}
+`

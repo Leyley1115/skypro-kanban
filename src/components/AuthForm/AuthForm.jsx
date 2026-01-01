@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   GlobalStyles,
   Wrapper,
@@ -14,9 +14,11 @@ import {
   ModalLink
 } from "./AuthForm.styled.js";
 import { signIn, signUp } from "../../services/auth.js";
+import { AuthContext } from "../../context/AuthContext.js";
 
 export function AuthForm({ isSignUp, setIsAuth }) {
   const navigate = useNavigate();
+  const {updateUserInfo}=useContext(AuthContext);
 
   // состояние полей
   const [formData, setFormData] = useState({
@@ -115,8 +117,7 @@ export function AuthForm({ isSignUp, setIsAuth }) {
         : await signUp(formData);
 
       if (data) {
-        setIsAuth(true);
-        localStorage.setItem("userInfo", JSON.stringify(data));
+        updateUserInfo(data);
         navigate("/");
       }
     } catch (err) {
