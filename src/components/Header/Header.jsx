@@ -31,7 +31,7 @@ function Header(){
 						<Hover2 href="#" onClick = {openState}>{user.name}</Hover2>
 						<HeaderPopUserSet $state = {state}>
 							<SetName>{user.name}</SetName>
-							<SetMail>ivan.ivanov@gmail.com</SetMail>
+							{/* <SetMail>ivan.ivanov@gmail.com</SetMail> */}
 							<SetTheme>
 								<p>Темная тема</p>
 								<Checkbox type="checkbox" name="checkbox"></Checkbox>

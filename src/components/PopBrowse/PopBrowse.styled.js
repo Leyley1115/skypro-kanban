@@ -152,14 +152,28 @@ export const PopBrowseBtnBrowse = styled.div`
   justify-content: space-between;
 
   & button {
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 0 14px;
+  padding: 4px 14px 4px 14px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 0.7px solid #565EEF;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #565EEF;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #565EEF; /* hover3 */
+    color: #FFFFFF;
+  }
   }
 `;
 
 export const BtnGroup = styled.div`
-  & button {
-    margin-right: 8px;
-  }
+  display: flex;
+  gap: 8px;
 `;

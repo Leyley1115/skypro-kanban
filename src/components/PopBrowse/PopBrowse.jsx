@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import Calendar from "../Calendar/Calendar.jsx";
 import { PopExitButtonNo } from "../PopUser/PopUser.styled.js";
+import { useEffect } from "react";
 
 import {
   PopBrowseStyle,
@@ -24,41 +25,39 @@ import {
 import { CardsContext } from "../../context/TaskContext.js";
 
 export function PopBrowse({ id }) {
-  const {
-    cards,
-    deleteCard,
-    updateCard,
-    setPopBrowseOpen,
-  } = useContext(CardsContext);
+const { cards, deleteCard, updateCard, setPopBrowseOpen, } = useContext(CardsContext);
+const card = cards.find((c) => c._id === id); 
+const statusList = [ 
+  "Без статуса", 
+  "Нужно сделать", 
+  "В работе", 
+  "Тестирование", 
+  "Готово", ]; 
+const [isEditingNow, setIsEditingNow] = useState(true); 
+const [editedStatus, setEditedStatus] = useState(card?.status || ""); 
+const [editedDescription, setEditedDescription] = useState(card?.description || "");
 
-  const card = cards.find((c) => c._id === id);
-  if (!card) return null;
+useEffect(() => { 
+  if (card) { 
+    setEditedStatus(card.status); 
+    setEditedDescription(card.description); 
+  } 
+}, [card]);
 
-  const statusList = [
-    "Без статуса",
-    "Нужно сделать",
-    "В работе",
-    "Тестирование",
-    "Готово",
-  ];
 
-  const [isEditingNow, setIsEditingNow] = useState(true);
-  const [editedStatus, setEditedStatus] = useState(card.status);
-  const [editedDescription, setEditedDescription] = useState(card.description);
+if (!card) return null; 
+const handleSave = async () => { 
+  await updateCard({ 
+    id, 
+    card: { 
+      ...card, 
+      status: 
+        editedStatus, 
+        description: editedDescription, 
+      }, 
+}); 
 
-  const handleSave = async () => {
-    await updateCard({
-      id,
-      card: {
-        ...card,
-        status: editedStatus,
-        description: editedDescription,
-      },
-    });
-
-    setIsEditingNow(true);
-  };
-
+  setIsEditingNow(true); };
   return (
     <PopBrowseStyle>
       <PopBrowseContainer>
@@ -113,7 +112,7 @@ export function PopBrowse({ id }) {
               <PopBrowseBtnBrowse>
                 <BtnGroup>
                   <button onClick={() => setIsEditingNow(false)}>
-                    Редактировать
+                    Редактировать задачу
                   </button>
 
                   <button onClick={() => deleteCard(id)}>
@@ -121,25 +120,25 @@ export function PopBrowse({ id }) {
                   </button>
                 </BtnGroup>
 
-                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)}>
+                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)} to='/'>
                   Закрыть
                 </PopExitButtonNo>
               </PopBrowseBtnBrowse>
             ) : (
               <PopBrowseBtnBrowse>
                 <BtnGroup>
-                  <button onClick={handleSave}>Сохранить</button>
+                  <PopExitButtonNo onClick={handleSave}>Сохранить</PopExitButtonNo>
 
                   <button onClick={() => setIsEditingNow(true)}>
                     Отменить
                   </button>
 
                   <button onClick={() => deleteCard(id)}>
-                    Удалить
+                    Удалить задачу
                   </button>
                 </BtnGroup>
 
-                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)}>
+                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)} to ='/'>
                   Закрыть
                 </PopExitButtonNo>
               </PopBrowseBtnBrowse>
