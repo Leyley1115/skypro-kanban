@@ -42,6 +42,7 @@ export const CardsProvider = ({ children }) => {
 
   useEffect(() => {
     const loadCards = async () => {
+      setLoading(true);
       try {
         const data = await fetchCards({ token: user.token });
         if (data) setCards(data.tasks);
@@ -51,7 +52,6 @@ export const CardsProvider = ({ children }) => {
         setLoading(false);
       }
     };
-
     loadCards();
   }, [user.token]);
 
