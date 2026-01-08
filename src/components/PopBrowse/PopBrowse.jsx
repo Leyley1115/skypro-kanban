@@ -1,157 +1,152 @@
+import { useState, useContext } from "react";
 import Calendar from "../Calendar/Calendar.jsx";
-import { useState } from "react";
 import { PopExitButtonNo } from "../PopUser/PopUser.styled.js";
-import { 
-  PopNewCardStyle, 
-  PopNewCardContainer, 
-  PopNewCardBlock, 
-  PopNewCardContent, 
-  PopNewCardTitle, 
-  PopNewCardTopBlock,
+
+import {
+  PopBrowseStyle,
+  PopBrowseContainer,
+  PopBrowseBlock,
+  PopBrowseContent,
+  PopBrowseTitle,
+  PopBrowseTopBlock,
   CategoryTheme,
   Color,
   Status,
   StatusThemes,
   StatusTheme,
-  PopNewCardWrap,
-  PopNewCardForm,
+  PopBrowseWrap,
+  PopBrowseForm,
   FormNewInput,
   PopBrowseBtnBrowse,
   BtnGroup,
 } from "./PopBrowse.styled";
-import { useContext } from "react";
+
 import { CardsContext } from "../../context/TaskContext.js";
 
+export function PopBrowse({ id }) {
+  const {
+    cards,
+    deleteCard,
+    updateCard,
+    setPopBrowseOpen,
+  } = useContext(CardsContext);
 
-export function PopBrowse({isEditing, id}) {
-  const statusList = [
-  'Без статуса',
-  'Нужно сделать',
-  'В работе',
-  'Тестирование',
-  'Готово'
-  ];
-  const { cards } = useContext(CardsContext);
-  const card = cards.find(c => c._id === id);
+  const card = cards.find((c) => c._id === id);
   if (!card) return null;
-  const { deleteCard } = useContext(CardsContext);
-  const { updateCard } = useContext(CardsContext); 
-  const [isEditingNow, setIsEditingNow] = useState(isEditing);
-  const [editedStatus, setEditedStatus] = useState(card.status); 
-  const [editedTitle, setEditedTitle] = useState(card.title); 
+
+  const statusList = [
+    "Без статуса",
+    "Нужно сделать",
+    "В работе",
+    "Тестирование",
+    "Готово",
+  ];
+
+  const [isEditingNow, setIsEditingNow] = useState(true);
+  const [editedStatus, setEditedStatus] = useState(card.status);
   const [editedDescription, setEditedDescription] = useState(card.description);
-  const handleSave = () => { 
-    updateCard({ 
-      id, 
-      card: { 
-        ...card, 
-        status: editedStatus, 
-        title: editedTitle, 
-        description: editedDescription, 
-      }, 
-    }); 
-    setIsEditingNow(true); 
+
+  const handleSave = async () => {
+    await updateCard({
+      id,
+      card: {
+        ...card,
+        status: editedStatus,
+        description: editedDescription,
+      },
+    });
+
+    setIsEditingNow(true);
   };
 
   return (
-    <PopNewCardStyle $isEditing={isEditing}>
-      <PopNewCardContainer>
-        <PopNewCardBlock>
-          <PopNewCardContent>
-            <PopNewCardTopBlock>
-              <PopNewCardTitle>{card.title}</PopNewCardTitle>
+    <PopBrowseStyle>
+      <PopBrowseContainer>
+        <PopBrowseBlock>
+          <PopBrowseContent>
+            <PopBrowseTopBlock>
+              <PopBrowseTitle>{card.title}</PopBrowseTitle>
+
               <CategoryTheme $topic={card.topic}>
                 <Color $topic={card.topic}>{card.topic}</Color>
               </CategoryTheme>
-            </PopNewCardTopBlock>
+            </PopBrowseTopBlock>
+
             <Status>
-              <PopNewCardTitle>{card.status}</PopNewCardTitle>
+              <PopBrowseTitle>{editedStatus}</PopBrowseTitle>
 
               <StatusThemes>
                 {isEditingNow ? (
                   <StatusTheme>
                     <p>{editedStatus}</p>
                   </StatusTheme>
-                  ) 
-                  : 
-                  (
-                  statusList.map(status => (
-                   <StatusTheme
+                ) : (
+                  statusList.map((status) => (
+                    <StatusTheme
                       key={status}
                       onClick={() => setEditedStatus(status)}
                       $active={status === editedStatus}
-                      $isEditingNow={!isEditingNow}
                     >
                       <p>{status}</p>
                     </StatusTheme>
-
                   ))
                 )}
-            </StatusThemes>
-
+              </StatusThemes>
             </Status>
-            <PopNewCardWrap>
-              <PopNewCardForm
-                id="formBrowseCard"
-                action="#"
-              >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
-                    Описание задачи
-                  </label>
-                  <FormNewInput
-                    className="form-browse__area"
-                    name="text"
-                    id="textArea01"
-                    readOnly={isEditingNow}
-                    value={editedDescription}
-                    onChange={e => setEditedDescription(e.target.value)}
-                    placeholder="Введите описание задачи..."
-                  />
-                </div>
-              </PopNewCardForm>
+
+            <PopBrowseWrap>
+              <PopBrowseForm>
+                <label>Описание задачи</label>
+
+                <FormNewInput
+                  readOnly={isEditingNow}
+                  value={editedDescription}
+                  onChange={(e) => setEditedDescription(e.target.value)}
+                  placeholder="Введите описание задачи..."
+                />
+              </PopBrowseForm>
+
               <Calendar />
-            </PopNewCardWrap>
-            {isEditingNow ?
-            <PopBrowseBtnBrowse>
-              <BtnGroup>
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <p onClick={() => setIsEditingNow(!isEditingNow)}>Редактировать задачу</p>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03" onClick={() => { deleteCard(id);}}>
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </BtnGroup>
-              <PopExitButtonNo to="/">Закрыть</PopExitButtonNo>
-            </PopBrowseBtnBrowse>
-            :  <PopBrowseBtnBrowse>
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn-edit__edit _btn-bg _hover01"
-                  onClick={handleSave}
-                >
-                  Сохранить
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03" 
-                 onClick={() => setIsEditingNow(!isEditingNow)}
-                >
-                  Отменить
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                  onClick={() => { deleteCard(id);}}
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-               <PopExitButtonNo to="/">Закрыть</PopExitButtonNo>
-            </PopBrowseBtnBrowse>
-          }
-           </PopNewCardContent>
-        </PopNewCardBlock>
-      </PopNewCardContainer>
-     </PopNewCardStyle>
+            </PopBrowseWrap>
+
+            {isEditingNow ? (
+              <PopBrowseBtnBrowse>
+                <BtnGroup>
+                  <button onClick={() => setIsEditingNow(false)}>
+                    Редактировать
+                  </button>
+
+                  <button onClick={() => deleteCard(id)}>
+                    Удалить
+                  </button>
+                </BtnGroup>
+
+                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)}>
+                  Закрыть
+                </PopExitButtonNo>
+              </PopBrowseBtnBrowse>
+            ) : (
+              <PopBrowseBtnBrowse>
+                <BtnGroup>
+                  <button onClick={handleSave}>Сохранить</button>
+
+                  <button onClick={() => setIsEditingNow(true)}>
+                    Отменить
+                  </button>
+
+                  <button onClick={() => deleteCard(id)}>
+                    Удалить
+                  </button>
+                </BtnGroup>
+
+                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)}>
+                  Закрыть
+                </PopExitButtonNo>
+              </PopBrowseBtnBrowse>
+            )}
+          </PopBrowseContent>
+        </PopBrowseBlock>
+      </PopBrowseContainer>
+    </PopBrowseStyle>
   );
 }
