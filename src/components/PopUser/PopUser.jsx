@@ -2,7 +2,7 @@ import { PopExit, PopExitBlock, PopExitButtonNo, PopExitButtonYes, PopExitContai
 import { useContext } from "react"; 
 import { AuthContext } from "../../context/AuthContext";
 
-export function PopUser({setIsAuth}){
+export function PopUser(){
 	const { logout } = useContext(AuthContext);
 
     return(
