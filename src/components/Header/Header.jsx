@@ -3,11 +3,12 @@ import { ButtonHeaderNew, Checkbox, HeaderBlock, HeaderLogo, HeaderLogoDark, Hea
 import { Container } from '../Main/Main.styled.js';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext.js';
+import { CardsContext } from '../../context/TaskContext.js';
 
 
 function Header(){
 	const [state, setState] = useState(false);
-	const [isNewCardOpen, setIsNewCardOpen] = useState(false);
+	const {setPopNewCard} = useContext(CardsContext);
 	const {user} = useContext(AuthContext);
 
 	function openState(){
@@ -26,7 +27,7 @@ function Header(){
 						<a href="" target="_self"><img src="images/logo_dark.png" alt="logo"></img></a>
 					</HeaderLogoDark>
 					<HeaderNav>
-						<ButtonHeaderNew onClick={() => setIsNewCardOpen(true)}>Создать новую задачу</ButtonHeaderNew>
+						<ButtonHeaderNew onClick={() => setPopNewCard(true)}>Создать новую задачу</ButtonHeaderNew>
 						<Hover2 href="#" onClick = {openState}>{user.name}</Hover2>
 						<HeaderPopUserSet $state = {state}>
 							<SetName>{user.name}</SetName>

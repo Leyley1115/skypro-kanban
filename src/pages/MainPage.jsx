@@ -8,12 +8,19 @@ import { useContext } from 'react';
 import { CardsContext } from '../context/TaskContext.js';
 
 export function MainPage({ isAuth }) {
-  const { cards, loading, error } = useContext(CardsContext);
+  const { 
+    cards, 
+    loading, 
+    error, 
+    isPopNewCardOpen,
+    isPopBrowseOpen, 
+    browseCardId,
+  } = useContext(CardsContext);
 
   return (
     <div className="wrapper">
-      <PopNewCard />
-      <PopBrowse />
+      {isPopNewCardOpen && <PopNewCard isOpen={isPopNewCardOpen}/>}
+      {isPopBrowseOpen && browseCardId && <PopBrowse id={browseCardId} />}
       <Header isAuth={isAuth} />
       <Outlet />
       <Main loading={loading} error={error} cards={cards} />
