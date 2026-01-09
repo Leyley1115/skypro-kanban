@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Calendar from "../Calendar/Calendar.jsx";
+import { MyCalendar } from "../Calendar/MyCalendar.jsx";
 import { PopExitButtonNo } from "../PopUser/PopUser.styled.js";
 import { useEffect } from "react";
 
@@ -36,6 +36,7 @@ const statusList = [
 const [isEditingNow, setIsEditingNow] = useState(true); 
 const [editedStatus, setEditedStatus] = useState(card?.status || ""); 
 const [editedDescription, setEditedDescription] = useState(card?.description || "");
+const [editedDate, setEditedDate] = useState(card?.date || new Date());
 
 useEffect(() => { 
   if (card) { 
@@ -51,6 +52,7 @@ const handleSave = async () => {
     id, 
     card: { 
       ...card, 
+      date: editedDate.toISOString(),
       status: 
         editedStatus, 
         description: editedDescription, 
@@ -105,7 +107,11 @@ const handleSave = async () => {
                 />
               </PopBrowseForm>
 
-              <Calendar />
+            <MyCalendar
+              value={editedDate}
+              onChange={setEditedDate}
+            />
+
             </PopBrowseWrap>
 
             {isEditingNow ? (
@@ -115,7 +121,7 @@ const handleSave = async () => {
                     Редактировать задачу
                   </button>
 
-                  <button onClick={() => deleteCard(id)}>
+                  <button onClick={() => deleteCard(id)} to='/'>
                     Удалить
                   </button>
                 </BtnGroup>

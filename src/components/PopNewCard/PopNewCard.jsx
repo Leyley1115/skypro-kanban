@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Calendar from "../Calendar/Calendar.jsx";
+import { MyCalendar } from "../Calendar/MyCalendar.jsx";
 import { CardsContext } from "../../context/TaskContext.js";
 import { AuthContext } from "../../context/AuthContext.js";
 
@@ -14,6 +14,8 @@ import {
 } from "../PopNewCard/PopNewCard.styled.js";
 
 export function PopNewCard() {
+  const [newDate, setNewDate] = useState(new Date());
+  const { error } = useContext(CardsContext);
   const { setPopNewCard } = useContext(CardsContext);
   const { addNewCard } = useContext(CardsContext);
   const { user } = useContext(AuthContext);
@@ -81,7 +83,10 @@ export function PopNewCard() {
                 </div>
               </form>
 
-              <Calendar onChange={(d) => setDate(d)} />
+              <MyCalendar
+                value={newDate}
+                onChange={setNewDate}
+              />
             </PopNewCardWrap>
 
             {/* Категории */}
