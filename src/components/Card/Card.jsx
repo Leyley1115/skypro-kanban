@@ -62,7 +62,7 @@ export function Card({topic, title, date, id}) {
                   </clipPath>
                 </defs>
               </svg>
-              <p>{date}</p>
+              <p>{new Date(date).toLocaleDateString("ru-RU")}</p>
             </CardDate>
           </CardContent>
         </SCard>
