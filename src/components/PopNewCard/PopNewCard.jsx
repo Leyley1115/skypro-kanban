@@ -15,30 +15,40 @@ import {
 
 export function PopNewCard() {
   const [newDate, setNewDate] = useState(new Date());
-  const { error } = useContext(CardsContext);
-  const { setPopNewCard } = useContext(CardsContext);
-  const { addNewCard } = useContext(CardsContext);
+  const { error, addNewCard, setPopNewCard } = useContext(CardsContext);
   const { user } = useContext(AuthContext);
   const token = user.token;
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [topic, setTopic] = useState("Web Design");
-  const [date, setDate] = useState(new Date().toISOString());
+  const [localError, setLocalError] = useState("");
 
-  const handleCreate = () => {
-    if (!title.trim()) return;
+  const handleCreate = async () => {
+    if (!title.trim()) {
+      setLocalError("Введите название задачи");
+      return;
+    }
 
-    addNewCard({
-      token: token,
+    if (!description.trim()) {
+      setLocalError("Введите описание задачи");
+      return;
+    }
+
+    setLocalError("");
+
+    await addNewCard({
+      token,
       card: {
         title,
         description,
         topic,
         status: "Без статуса",
-        date,
+        date: newDate.toISOString(),
       },
     });
+
+    setPopNewCard(false);
   };
 
   return (
@@ -83,13 +93,9 @@ export function PopNewCard() {
                 </div>
               </form>
 
-              <MyCalendar
-                value={newDate}
-                onChange={setNewDate}
-              />
+              <MyCalendar value={newDate} onChange={setNewDate} />
             </PopNewCardWrap>
 
-            {/* Категории */}
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
 
@@ -123,12 +129,18 @@ export function PopNewCard() {
               </div>
             </div>
 
+            {localError && (
+              <p style={{ color: "red", marginTop: "10px" }}>{localError}</p>
+            )}
+
+            {error && (
+              <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
+            )}
+
             <button
               className="form-new__create _hover01"
               id="btnCreate"
-              onClick={async () => {
-                await handleCreate();
-              }}
+              onClick={handleCreate}
             >
               Создать задачу
             </button>
