@@ -36,7 +36,9 @@ const statusList = [
 const [isEditingNow, setIsEditingNow] = useState(true); 
 const [editedStatus, setEditedStatus] = useState(card?.status || ""); 
 const [editedDescription, setEditedDescription] = useState(card?.description || "");
-const [editedDate, setEditedDate] = useState(card?.date || new Date());
+const [editedDate, setEditedDate] = useState(
+  card?.date ? new Date(card.date) : new Date()
+);
 
 useEffect(() => { 
   if (card) { 
@@ -109,8 +111,9 @@ const handleSave = async () => {
 
             <MyCalendar
               value={editedDate}
-              onChange={setEditedDate}
+              onChange={(value) => setEditedDate(new Date(value))}
             />
+
 
             </PopBrowseWrap>
 
