@@ -21,7 +21,7 @@ export function Card({topic, title, date, id}) {
             <SCardTheme $topic = {topic}>
               <p>{topic}</p>
             </SCardTheme>
-              <CardBtn to={`/card/${id}`} onClick={(e) => {
+              <CardBtn onClick={(e) => {
                 e.stopPropagation();
                 setBrowseCardId(id);
                 setPopBrowseOpen(true);

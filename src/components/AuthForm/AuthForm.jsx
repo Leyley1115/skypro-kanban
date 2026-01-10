@@ -20,28 +20,23 @@ export function AuthForm({ isSignUp, setIsAuth }) {
   const navigate = useNavigate();
   const {updateUserInfo}=useContext(AuthContext);
 
-  // состояние полей
   const [formData, setFormData] = useState({
     name: "",
     login: "",
     password: "",
   });
 
-  // состояние ошибок
   const [errors, setErrors] = useState({
     name: false,
     login: false,
     password: false,
   });
 
-  // текст ошибки
   const [error, setError] = useState("");
 
-  // валидация
   const validateForm = () => {
   const newErrors = { name: false, login: false, password: false };
 
-  //вход
   if (!isSignUp) {
     let isValid = true;
 
@@ -64,7 +59,6 @@ export function AuthForm({ isSignUp, setIsAuth }) {
     return isValid;
   }
 
-  //регистрация
   let isValid = true;
 
   if (!formData.name.trim()) {
@@ -105,7 +99,6 @@ export function AuthForm({ isSignUp, setIsAuth }) {
     setError("");
   };
 
-  // отправка формы
   const handleSubmit = async (e) => {
     e.preventDefault();
 
