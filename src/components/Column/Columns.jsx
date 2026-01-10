@@ -1,33 +1,36 @@
 import { Card } from "../Card/Card";
-// import { cardList } from "../data";
 import { Loader } from "../Loader/Loader";
 import { CardLoader } from "../CardLoader/CardLoader";
-import { MainColumn, ColumnTitle, Cards, Main } from "./Columns.styled.js";
+import { MainColumn, ColumnTitle, Main } from "./Columns.styled.js";
 
 function Columns({loading, cardList}) {
-  // const statusList = cardList.filter((item, index, array) => {
-  //   return index === array.findIndex(obj => obj.status === item.status);
-  // }).map(item => item.status);
-  // console.log(statusList);
   const statusList=['Без статуса', 'Нужно сделать', 'В работе', 'Тестирование', 'Готово']
 
   return (
-    <Main style = {{display: "flex"}}>
+  <>
+  <div style={{ display: "flex", flexDirection: "column" }}>
+    
+    <Main style={{ display: "flex" }}>
       {statusList.map(status => (
         <MainColumn key={status}>
-        {loading ?
-        <Loader width={120} bottom={20}/>
-        :<ColumnTitle>
-            <p>{status}</p>
-          </ColumnTitle>
-        }
-        <Cards>
-            {cardList
+          {loading ? (
+            <Loader width={120} bottom={20} />
+          ) : (
+            <ColumnTitle>
+              <p>{status}</p>
+            </ColumnTitle>
+          )}
+
+          {loading ? (
+            <>
+              <CardLoader />
+              <CardLoader />
+              <CardLoader />
+            </>
+          ) : (
+            cardList
               .filter(card => card.status === status)
-              .map(card => 
-                loading ?
-                <CardLoader key = {card._id} />
-                :
+              .map(card => (
                 <Card
                   key={card._id}
                   topic={card.topic}
@@ -35,11 +38,20 @@ function Columns({loading, cardList}) {
                   date={card.date}
                   id={card._id}
                 />
-              )}
-          </Cards>
+              ))
+          )}
         </MainColumn>
       ))}
     </Main>
+
+    {!loading && cardList.length === 0 && (
+      <p style={{ marginTop: "20px", textAlign: "center" }}>
+        Здесь пока что нет задач
+      </p>
+    )}
+    </div>
+  </>
+
   );
 }
 

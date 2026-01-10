@@ -7,8 +7,14 @@ import {
   CardDate,
   CardGroup
 } from "./Card.styled.js";
+import { useContext } from "react";
+import { CardsContext } from "../../context/TaskContext.js";
+import { useNavigate } from "react-router-dom";
+
 export function Card({topic, title, date, id}) {
-   
+   const { setPopBrowseOpen, setBrowseCardId } = useContext(CardsContext); 
+   const navigate = useNavigate();
+
   return (
     <>
       <div className="cards__item">
@@ -17,13 +23,16 @@ export function Card({topic, title, date, id}) {
             <SCardTheme $topic = {topic}>
               <p>{topic}</p>
             </SCardTheme>
-            {/* <a href="#popBrowse" target="_self"> */}
-              <CardBtn to={`/card/${id}`}>
+              <CardBtn to={`/card/${id}`} onClick={(e) => {
+                e.stopPropagation();
+                setBrowseCardId(id);
+                setPopBrowseOpen(true);
+                navigate(`/card/${id}`, { replace: false });
+              }}>
                 <div></div>
                 <div></div>
                 <div></div>
               </CardBtn>
-            {/* </a> */}
           </CardGroup>
           <CardContent>
               <CardTitle to={`/card/${id}`}><h3>{title}</h3></CardTitle>
@@ -56,7 +65,7 @@ export function Card({topic, title, date, id}) {
                   </clipPath>
                 </defs>
               </svg>
-              <p>{date}</p>
+              <p>{new Date(date).toLocaleDateString("ru-RU")}</p>
             </CardDate>
           </CardContent>
         </SCard>

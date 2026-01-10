@@ -1,11 +1,16 @@
 import {useState} from 'react';
 import { ButtonHeaderNew, Checkbox, HeaderBlock, HeaderLogo, HeaderLogoDark, HeaderNav, HeaderPopUserSet, Hover2, Hover3, SetMail, SetName, SetTheme, SHeader } from './Header.styled.js';
 import { Container } from '../Main/Main.styled.js';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.js';
+import { CardsContext } from '../../context/TaskContext.js';
 
 
 function Header(){
 	const [state, setState] = useState(false);
-	
+	const {setPopNewCard} = useContext(CardsContext);
+	const {user} = useContext(AuthContext);
+
 	function openState(){
 		setState(prev => !prev);
 	}
@@ -22,11 +27,13 @@ function Header(){
 						<a href="" target="_self"><img src="images/logo_dark.png" alt="logo"></img></a>
 					</HeaderLogoDark>
 					<HeaderNav>
-						<ButtonHeaderNew><a href="#popNewCard">Создать новую задачу</a></ButtonHeaderNew>
-						<Hover2 href="#" onClick = {openState}>Ivan Ivanov</Hover2>
+						<ButtonHeaderNew onClick={() => setPopNewCard(true)}>Создать новую задачу</ButtonHeaderNew>
+						<Hover2 href="#" onClick = {openState}>{user.name}</Hover2>
 						<HeaderPopUserSet $state = {state}>
-							<SetName>Ivan Ivanov</SetName>
-							<SetMail>ivan.ivanov@gmail.com</SetMail>
+							<SetName>{user.name}</SetName>
+
+							{/* Не знаю, откуда можно взять почту, в документации она никак не упоминается */}
+							<SetMail>{user.login}@gmail.com</SetMail>
 							<SetTheme>
 								<p>Темная тема</p>
 								<Checkbox type="checkbox" name="checkbox"></Checkbox>

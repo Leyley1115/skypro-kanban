@@ -1,16 +1,38 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение представляет собой канбан‑доску, где пользователь может работать с карточками задач. Доступ к функционалу осуществляется после регистрации и авторизации.
 
-Currently, two official plugins are available:
+Основные функции:
+1) Регистрация.
+- Создание нового аккаунта.
+- Проверка корректности введённых данных.
+- Сохранение пользователя через API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2) Авторизация
+- Вход по логину и паролю.
+- Проверка данных на сервере.
+- Доступ к канбан‑доске только после успешного входа.
 
-## React Compiler
+3) Создание карточек
+- Добавление новой задачи в выбранную колонку.
+- Поля:
+- - название
+- - описание
+- - календарь с датой выполнения
+- - варианты направления задач
+- Валидация обязательных полей.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+4) Редактирование карточек
+- Изменение названия, описания, направления и даты.
+- Обновление данных через API.
+- Мгновенное отображение изменений на доске.
 
-## Expanding the ESLint configuration
+5) Просмотр карточек
+- Открытие карточки в модальном окне.
+- Отображение полной информации о задаче.
+- Обновление URL до /card/:id при открытии.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+6) Удаление задач
+- Удаление карточки через модальное окно.
+- Синхронизация с API.
+- Мгновенное удаление с доски.

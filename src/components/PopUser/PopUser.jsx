@@ -1,6 +1,9 @@
 import { PopExit, PopExitBlock, PopExitButtonNo, PopExitButtonYes, PopExitContainer, PopExitForm, PopExitFormGroup, PopExitTitle } from "./PopUser.styled.js";
+import { useContext } from "react"; 
+import { AuthContext } from "../../context/AuthContext";
 
-export function PopUser({setIsAuth}){
+export function PopUser(){
+	const { logout } = useContext(AuthContext);
 
     return(
         <>
@@ -12,7 +15,7 @@ export function PopUser({setIsAuth}){
 						</PopExitTitle>
 						<PopExitForm action="#">
 							<PopExitFormGroup>
-								<PopExitButtonYes to="/" onClick={() => {setIsAuth(false)}}>Да, выйти</PopExitButtonYes>
+								<PopExitButtonYes to="/" onClick={logout}>Да, выйти</PopExitButtonYes>
 								<PopExitButtonNo to="/">Нет, остаться</PopExitButtonNo>
 							</PopExitFormGroup>
 						</PopExitForm>

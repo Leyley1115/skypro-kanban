@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   GlobalStyles,
   Wrapper,
@@ -14,32 +14,29 @@ import {
   ModalLink
 } from "./AuthForm.styled.js";
 import { signIn, signUp } from "../../services/auth.js";
+import { AuthContext } from "../../context/AuthContext.js";
 
 export function AuthForm({ isSignUp, setIsAuth }) {
   const navigate = useNavigate();
+  const {updateUserInfo}=useContext(AuthContext);
 
-  // состояние полей
   const [formData, setFormData] = useState({
     name: "",
     login: "",
     password: "",
   });
 
-  // состояние ошибок
   const [errors, setErrors] = useState({
     name: false,
     login: false,
     password: false,
   });
 
-  // текст ошибки
   const [error, setError] = useState("");
 
-  // валидация
   const validateForm = () => {
   const newErrors = { name: false, login: false, password: false };
 
-  //вход
   if (!isSignUp) {
     let isValid = true;
 
@@ -62,7 +59,6 @@ export function AuthForm({ isSignUp, setIsAuth }) {
     return isValid;
   }
 
-  //регистрация
   let isValid = true;
 
   if (!formData.name.trim()) {
@@ -103,7 +99,6 @@ export function AuthForm({ isSignUp, setIsAuth }) {
     setError("");
   };
 
-  // отправка формы
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -115,8 +110,7 @@ export function AuthForm({ isSignUp, setIsAuth }) {
         : await signUp(formData);
 
       if (data) {
-        setIsAuth(true);
-        localStorage.setItem("userInfo", JSON.stringify(data));
+        updateUserInfo(data);
         navigate("/");
       }
     } catch (err) {
