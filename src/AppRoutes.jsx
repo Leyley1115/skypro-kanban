@@ -8,7 +8,7 @@ import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import PrivateRoute from './pages/PrivateRoute';
 import { CardsProvider } from './context/TaskProvider';
-import { Card } from './components/Card/Card';
+import { PopBrowse } from './components/PopBrowse/PopBrowse';
 
 
 export function AppRoutes(){
@@ -23,7 +23,7 @@ export function AppRoutes(){
 					</CardsProvider>}
 					>
 					<Route path="exit" element={<ExitPage setIsAuth = {setIsAuth}/>} />
-					<Route path="card/:id" element={<Card />} />
+					<Route path="card/:id" element={<PopBrowse />} />
 				</Route>
 			</Route>
 			<Route path="/login" element={<SignInPage setIsAuth = {setIsAuth}/>} />

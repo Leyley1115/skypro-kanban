@@ -9,9 +9,11 @@ import {
 } from "./Card.styled.js";
 import { useContext } from "react";
 import { CardsContext } from "../../context/TaskContext.js";
+import { useNavigate } from "react-router-dom";
 
 export function Card({topic, title, date, id}) {
    const { setPopBrowseOpen, setBrowseCardId } = useContext(CardsContext); 
+   const navigate = useNavigate();
 
   return (
     <>
@@ -21,10 +23,11 @@ export function Card({topic, title, date, id}) {
             <SCardTheme $topic = {topic}>
               <p>{topic}</p>
             </SCardTheme>
-              <CardBtn onClick={(e) => {
+              <CardBtn to={`/card/${id}`} onClick={(e) => {
                 e.stopPropagation();
                 setBrowseCardId(id);
                 setPopBrowseOpen(true);
+                navigate(`/card/${id}`, { replace: false });
               }}>
                 <div></div>
                 <div></div>
