@@ -25,7 +25,7 @@ import {
 import { CardsContext } from "../../context/TaskContext.js";
 
 export function PopBrowse({ id }) {
-const { cards, deleteCard, updateCard, setPopBrowseOpen, } = useContext(CardsContext);
+const { cards, deleteCard, updateCard, setPopBrowseOpen, setBrowseCardId } = useContext(CardsContext);
 const card = cards.find((c) => c._id === id); 
 const statusList = [ 
   "Без статуса", 
@@ -129,7 +129,10 @@ const handleSave = async () => {
                   </button>
                 </BtnGroup>
 
-                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)} to='/'>
+                <PopExitButtonNo onClick={() => {
+                  setPopBrowseOpen(false);
+                  setBrowseCardId(null);
+                }} to='/'>
                   Закрыть
                 </PopExitButtonNo>
               </PopBrowseBtnBrowse>
@@ -147,7 +150,7 @@ const handleSave = async () => {
                   </button>
                 </BtnGroup>
 
-                <PopExitButtonNo onClick={() => setPopBrowseOpen(false)} to ='/'>
+                <PopExitButtonNo onClick={() => {setPopBrowseOpen(false); setBrowseCardId(null);}} to ='/'>
                   Закрыть
                 </PopExitButtonNo>
               </PopBrowseBtnBrowse>
